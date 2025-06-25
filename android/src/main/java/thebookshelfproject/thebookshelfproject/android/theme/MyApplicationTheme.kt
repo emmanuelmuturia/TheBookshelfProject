@@ -1,4 +1,4 @@
-package thebookshelfproject.thebookshelfproject.android
+package thebookshelfproject.thebookshelfproject.android.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.shape.RoundedCornerShape
