@@ -1,7 +1,7 @@
 plugins {
-    alias(libs.plugins.androidApplication)
-    alias(libs.plugins.kotlinAndroid)
-    alias(libs.plugins.compose.compiler)
+    alias(notation = libs.plugins.androidApplication)
+    alias(notation = libs.plugins.kotlinAndroid)
+    alias(notation = libs.plugins.compose.compiler)
 }
 
 android {
@@ -12,7 +12,7 @@ android {
         minSdk = 24
         targetSdk = 35
         versionCode = 1
-        versionName = "1.0"
+        versionName = "1.0.0"
     }
     buildFeatures {
         compose = true
@@ -37,10 +37,10 @@ android {
 }
 
 dependencies {
-    implementation(projects.commons)
-    implementation(libs.compose.ui)
-    implementation(libs.compose.ui.tooling.preview)
-    implementation(libs.compose.material3)
-    implementation(libs.androidx.activity.compose)
-    debugImplementation(libs.compose.ui.tooling)
+    implementation(dependencyNotation = projects.commons)
+    implementation(dependencyNotation = libs.compose.ui)
+    implementation(dependencyNotation = libs.compose.ui.tooling.preview)
+    implementation(dependencyNotation = libs.compose.material3)
+    implementation(dependencyNotation = libs.androidx.activity.compose)
+    debugImplementation(dependencyNotation = libs.compose.ui.tooling)
 }

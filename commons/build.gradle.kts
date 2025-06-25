@@ -1,8 +1,8 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
-    alias(libs.plugins.kotlinMultiplatform)
-    alias(libs.plugins.androidLibrary)
+    alias(notation = libs.plugins.kotlinMultiplatform)
+    alias(notation = libs.plugins.androidLibrary)
 }
 
 kotlin {
@@ -15,7 +15,7 @@ kotlin {
             }
         }
     }
-    
+
     listOf(
         iosX64(),
         iosArm64(),
@@ -32,7 +32,7 @@ kotlin {
             //put your multiplatform dependencies here
         }
         commonTest.dependencies {
-            implementation(libs.kotlin.test)
+            implementation(dependencyNotation = libs.kotlin.test)
         }
     }
 }
