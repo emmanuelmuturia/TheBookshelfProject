@@ -38,6 +38,8 @@ android {
 
 dependencies {
     implementation(dependencyNotation = projects.commons)
+    implementation(dependencyNotation = libs.google.fonts)
+    implementation(dependencyNotation = libs.android.splash.screen)
     implementation(dependencyNotation = libs.compose.ui)
     implementation(dependencyNotation = libs.compose.ui.tooling.preview)
     implementation(dependencyNotation = libs.compose.material3)

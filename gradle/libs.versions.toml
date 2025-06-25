@@ -17,6 +17,8 @@ viewModel = "2.9.0"
 
 splashScreen = "1.0.1"
 
+googleFonts = "1.8.3"
+
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activityCompose" }
@@ -37,6 +39,8 @@ timber = { module = "com.jakewharton.timber:timber", version.ref = "timber" }
 lifecycle-viewmodel = { module = "org.jetbrains.androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "viewModel" }
 
 android-splash-screen = { module = "androidx.core:core-splashscreen", version.ref = "splashScreen" }
+
+google-fonts = { group = "androidx.compose.ui", name = "ui-text-google-fonts", version.ref = "googleFonts" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
