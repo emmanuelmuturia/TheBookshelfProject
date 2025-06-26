@@ -20,10 +20,10 @@ plugins {
 }
 
 android {
-    namespace = "thebookshelfproject.thebookshelfproject.android"
+    namespace = "bookshelf.bookshelf.android"
     compileSdk = 35
     defaultConfig {
-        applicationId = "thebookshelfproject.thebookshelfproject.android"
+        applicationId = "bookshelf.bookshelf.android"
         minSdk = 24
         targetSdk = 35
         versionCode = 1
@@ -55,6 +55,7 @@ dependencies {
     implementation(dependencyNotation = projects.commons)
     implementation(dependencyNotation = libs.google.fonts)
     implementation(dependencyNotation = libs.android.splash.screen)
+    implementation(dependencyNotation = libs.kotlinx.coroutines.android)
     implementation(dependencyNotation = libs.compose.ui)
     implementation(dependencyNotation = libs.compose.ui.tooling.preview)
     implementation(dependencyNotation = libs.compose.material3)

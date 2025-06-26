@@ -19,7 +19,7 @@
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
-        android:name="thebookshelfproject.dependencyInjection.BookshelfApplication"
+        android:name="bookshelf.dependencyInjection.BookshelfApplication"
         android:allowBackup="false"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">

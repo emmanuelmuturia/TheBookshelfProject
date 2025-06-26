@@ -18,6 +18,8 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 plugins {
     alias(notation = libs.plugins.kotlinMultiplatform)
     alias(notation = libs.plugins.androidLibrary)
+    alias(notation = libs.plugins.ksp)
+    alias(notation = libs.plugins.kotlin.serialization.json)
 }
 
 kotlin {
@@ -46,21 +48,30 @@ kotlin {
         androidMain.dependencies {
             implementation(dependencyNotation = libs.koin.android)
             implementation(dependencyNotation = libs.koin.androidx.compose)
+            implementation(dependencyNotation = libs.ktor.client.okhttp)
         }
         commonMain.dependencies {
             // Put your Multiplatform Dependencies here...
             api(dependencyNotation = libs.koin.core)
             implementation(dependencyNotation = libs.koin.compose)
             implementation(dependencyNotation = libs.koin.compose.viewmodel)
+            implementation(dependencyNotation = libs.ktor.client.core)
+            implementation(dependencyNotation = libs.kotlinx.coroutines.core)
+            implementation(dependencyNotation = libs.timber)
+            implementation(dependencyNotation = libs.lifecycle.viewmodel)
+            implementation(dependencyNotation = libs.kotlin.serialization.json)
         }
         commonTest.dependencies {
             implementation(dependencyNotation = libs.kotlin.test)
+        }
+        iosMain.dependencies {
+            implementation(dependencyNotation = libs.ktor.client.darwin)
         }
     }
 }
 
 android {
-    namespace = "thebookshelfproject.thebookshelfproject"
+    namespace = "bookshelf.bookshelf"
     compileSdk = 35
     defaultConfig {
         minSdk = 24
