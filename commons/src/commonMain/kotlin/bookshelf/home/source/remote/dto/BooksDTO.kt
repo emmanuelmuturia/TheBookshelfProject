@@ -7,7 +7,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class BooksDTO(
     @SerialName("items")
-    val items: List<Item>,
+    val itemDTOS: List<ItemDTO>,
     @SerialName("kind")
     val kind: String,
     @SerialName("totalItems")

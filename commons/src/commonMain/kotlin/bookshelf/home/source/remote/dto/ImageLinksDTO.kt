@@ -5,7 +5,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class ImageLinks(
+data class ImageLinksDTO(
     @SerialName("smallThumbnail")
     val smallThumbnail: String,
     @SerialName("thumbnail")

@@ -5,7 +5,9 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class SearchInfo(
-    @SerialName("textSnippet")
-    val textSnippet: String
+data class PdfDTO(
+    @SerialName("acsTokenLink")
+    val acsTokenLink: String,
+    @SerialName("isAvailable")
+    val isAvailable: Boolean
 )

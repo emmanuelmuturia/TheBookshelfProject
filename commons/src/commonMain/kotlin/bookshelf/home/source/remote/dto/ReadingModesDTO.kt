@@ -5,9 +5,9 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class IndustryIdentifier(
-    @SerialName("identifier")
-    val identifier: String,
-    @SerialName("type")
-    val type: String
+data class ReadingModesDTO(
+    @SerialName("image")
+    val image: Boolean,
+    @SerialName("text")
+    val text: Boolean
 )

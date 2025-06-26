@@ -24,7 +24,7 @@ fun initKoin(config: KoinAppDeclaration? = null) =
         modules(
             modules =
                 listOf(
-                    commonsKoinModule
+                    commonsKoinModule,
                 ),
         )
     }

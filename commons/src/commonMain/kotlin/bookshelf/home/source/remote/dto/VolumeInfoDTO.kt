@@ -5,7 +5,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class VolumeInfo(
+data class VolumeInfoDTO(
     @SerialName("allowAnonLogging")
     val allowAnonLogging: Boolean,
     @SerialName("authors")
@@ -19,9 +19,9 @@ data class VolumeInfo(
     @SerialName("description")
     val description: String,
     @SerialName("imageLinks")
-    val imageLinks: ImageLinks,
+    val imageLinksDTO: ImageLinksDTO,
     @SerialName("industryIdentifiers")
-    val industryIdentifiers: List<IndustryIdentifier>,
+    val industryIdentifierDTOS: List<IndustryIdentifierDTO>,
     @SerialName("infoLink")
     val infoLink: String,
     @SerialName("language")
@@ -31,7 +31,7 @@ data class VolumeInfo(
     @SerialName("pageCount")
     val pageCount: Int,
     @SerialName("panelizationSummary")
-    val panelizationSummary: PanelizationSummary,
+    val panelizationSummaryDTO: PanelizationSummaryDTO,
     @SerialName("previewLink")
     val previewLink: String,
     @SerialName("printType")
@@ -41,7 +41,7 @@ data class VolumeInfo(
     @SerialName("publisher")
     val publisher: String,
     @SerialName("readingModes")
-    val readingModes: ReadingModes,
+    val readingModesDTO: ReadingModesDTO,
     @SerialName("subtitle")
     val subtitle: String,
     @SerialName("title")

@@ -5,9 +5,9 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class Item(
+data class ItemDTO(
     @SerialName("accessInfo")
-    val accessInfo: AccessInfo,
+    val accessInfoDTO: AccessInfoDTO,
     @SerialName("etag")
     val etag: String,
     @SerialName("id")
@@ -15,11 +15,11 @@ data class Item(
     @SerialName("kind")
     val kind: String,
     @SerialName("saleInfo")
-    val saleInfo: SaleInfo,
+    val saleInfoDTO: SaleInfoDTO,
     @SerialName("searchInfo")
-    val searchInfo: SearchInfo,
+    val searchInfoDTO: SearchInfoDTO,
     @SerialName("selfLink")
     val selfLink: String,
     @SerialName("volumeInfo")
-    val volumeInfo: VolumeInfo
+    val volumeInfoDTO: VolumeInfoDTO
 )

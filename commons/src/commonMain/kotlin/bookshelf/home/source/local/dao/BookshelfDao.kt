@@ -11,9 +11,9 @@ import kotlinx.coroutines.flow.Flow
 interface BookshelfDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertBook(books: BooksEntity)
+    suspend fun insertBook(book: BooksEntity)
 
     @Query("SELECT * FROM BooksEntity")
-    fun getBooks(): Flow<List<BooksEntity>>
+    fun getBooks(bookQuery: String): Flow<List<BooksEntity>>
 
 }
