@@ -20,6 +20,7 @@ plugins {
     alias(notation = libs.plugins.androidLibrary)
     alias(notation = libs.plugins.ksp)
     alias(notation = libs.plugins.kotlin.serialization.json)
+    alias(notation = libs.plugins.room)
 }
 
 kotlin {
@@ -60,6 +61,8 @@ kotlin {
             implementation(dependencyNotation = libs.timber)
             implementation(dependencyNotation = libs.lifecycle.viewmodel)
             implementation(dependencyNotation = libs.kotlin.serialization.json)
+            implementation(dependencyNotation = libs.room.runtime)
+            implementation(dependencyNotation = libs.sqlite.bundled)
         }
         commonTest.dependencies {
             implementation(dependencyNotation = libs.kotlin.test)
@@ -80,4 +83,12 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+}
+
+room {
+    schemaDirectory("$projectDir/schemas")
+}
+
+dependencies {
+    ksp(dependencyNotation = libs.room.compiler)
 }
