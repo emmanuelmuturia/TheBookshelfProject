@@ -15,8 +15,8 @@ import kotlinx.coroutines.withContext
 class BookshelfLocalSourceImplementation(
     private val coroutineDispatcher: CoroutineDispatcher,
     private val bookshelfDao: BookshelfDao,
-    private val httpClient: HttpClient
-): BookshelfLocalSource {
+    private val httpClient: HttpClient,
+) : BookshelfLocalSource {
     override suspend fun getBooks(bookQuery: String): Flow<List<Books>> {
         return withContext(context = coroutineDispatcher) {
             bookshelfDao.getBooks(bookQuery = bookQuery)
@@ -29,19 +29,21 @@ class BookshelfLocalSourceImplementation(
 
     override suspend fun fetchRemoteBooks(bookQuery: String) {
         withContext(context = coroutineDispatcher) {
-            val response = httpClient.get(urlString = "https://www.googleapis.com/books/v1/volumes") {
-                url {
-                    parameters.append(name = "q", value = bookQuery)
+            val response =
+                httpClient.get(urlString = "https://www.googleapis.com/books/v1/volumes") {
+                    url {
+                        parameters.append(name = "q", value = bookQuery)
+                    }
                 }
-            }
             if (response.status == HttpStatusCode.OK) {
                 response.body<List<Books>>().map {
                     bookshelfDao.insertBook(
-                        book = BooksEntity(
-                            itemEntities = it.items,
-                            kind = it.kind,
-                            totalItems = it.totalItems
-                        )
+                        book =
+                            BooksEntity(
+                                itemEntities = it.items,
+                                kind = it.kind,
+                                totalItems = it.totalItems,
+                            ),
                     )
                 }
             }

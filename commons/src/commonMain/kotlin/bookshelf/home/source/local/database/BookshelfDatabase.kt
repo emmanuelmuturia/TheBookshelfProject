@@ -9,11 +9,10 @@ import bookshelf.home.source.local.typeConverter.BookshelfTypeConverters
 
 @Database(
     entities = [BooksEntity::class],
-    version = 1
+    version = 1,
+    exportSchema = false
 )
 @TypeConverters(value = [BookshelfTypeConverters::class])
 abstract class BookshelfDatabase : RoomDatabase() {
-
     abstract fun bookshelfDao(): BookshelfDao
-
 }

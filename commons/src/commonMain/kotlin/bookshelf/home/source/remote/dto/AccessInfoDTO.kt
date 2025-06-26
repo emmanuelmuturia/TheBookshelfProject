@@ -1,6 +1,5 @@
 package bookshelf.home.source.remote.dto
 
-
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -25,5 +24,5 @@ data class AccessInfoDTO(
     @SerialName("viewability")
     val viewability: String,
     @SerialName("webReaderLink")
-    val webReaderLink: String
+    val webReaderLink: String,
 )

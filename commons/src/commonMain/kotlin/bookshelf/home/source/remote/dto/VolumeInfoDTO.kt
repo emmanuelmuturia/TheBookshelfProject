@@ -1,6 +1,5 @@
 package bookshelf.home.source.remote.dto
 
-
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -45,5 +44,5 @@ data class VolumeInfoDTO(
     @SerialName("subtitle")
     val subtitle: String,
     @SerialName("title")
-    val title: String
+    val title: String,
 )

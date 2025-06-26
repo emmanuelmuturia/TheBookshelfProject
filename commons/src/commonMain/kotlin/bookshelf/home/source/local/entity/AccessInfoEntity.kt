@@ -16,5 +16,5 @@ data class AccessInfoEntity(
     val quoteSharingAllowed: Boolean,
     val textToSpeechPermission: String,
     val viewability: String,
-    val webReaderLink: String
+    val webReaderLink: String,
 )

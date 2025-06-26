@@ -1,6 +1,5 @@
 package bookshelf.home.source.remote.dto
 
-
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -21,5 +20,5 @@ data class ItemDTO(
     @SerialName("selfLink")
     val selfLink: String,
     @SerialName("volumeInfo")
-    val volumeInfoDTO: VolumeInfoDTO
+    val volumeInfoDTO: VolumeInfoDTO,
 )

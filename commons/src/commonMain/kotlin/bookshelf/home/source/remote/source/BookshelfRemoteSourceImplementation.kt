@@ -11,16 +11,17 @@ import kotlinx.coroutines.withContext
 
 class BookshelfRemoteSourceImplementation(
     private val coroutineDispatcher: CoroutineDispatcher,
-    private val httpClient: HttpClient
+    private val httpClient: HttpClient,
 ) : BookshelfRemoteSource {
     override suspend fun getBooks(bookQuery: String): BookshelfResult<List<BooksDTO>> {
         return withContext(context = coroutineDispatcher) {
             try {
-                val response = httpClient.get(urlString = "https://www.googleapis.com/books/v1/volumes") {
-                    url {
-                        parameters.append(name = "q", value = bookQuery)
+                val response =
+                    httpClient.get(urlString = "https://www.googleapis.com/books/v1/volumes") {
+                        url {
+                            parameters.append(name = "q", value = bookQuery)
+                        }
                     }
-                }
                 if (response.status == HttpStatusCode.OK) {
                     BookshelfResult.Success(data = response.body())
                 } else {

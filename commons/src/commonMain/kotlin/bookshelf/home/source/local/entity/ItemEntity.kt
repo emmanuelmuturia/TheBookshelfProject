@@ -1,6 +1,5 @@
 package bookshelf.home.source.local.entity
 
-
 import androidx.room.Embedded
 import kotlinx.serialization.Serializable
 
@@ -17,5 +16,5 @@ data class ItemEntity(
     val searchInfoEntity: SearchInfoEntity,
     val selfLink: String,
     @Embedded(prefix = "volumeInfo")
-    val volumeInfoEntity: VolumeInfoEntity
+    val volumeInfoEntity: VolumeInfoEntity,
 )

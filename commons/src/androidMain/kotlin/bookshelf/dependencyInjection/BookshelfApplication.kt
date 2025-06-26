@@ -16,9 +16,9 @@
 package bookshelf.dependencyInjection
 
 import android.app.Application
+import bookshelf.commons.dependencyInjection.initKoin
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
-import bookshelf.commons.dependencyInjection.initKoin
 
 class BookshelfApplication : Application() {
     override fun onCreate() {
@@ -26,9 +26,12 @@ class BookshelfApplication : Application() {
         initKoin {
             androidLogger()
             androidContext(androidContext = this@BookshelfApplication)
-            modules(modules = listOf(
-                bookshelfAndroidKoinModule
-            ))
+            modules(
+                modules =
+                    listOf(
+                        bookshelfAndroidKoinModule,
+                    ),
+            )
         }
     }
 }

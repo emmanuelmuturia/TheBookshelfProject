@@ -2,5 +2,5 @@ package bookshelf.home.data.model
 
 data class Pdf(
     val acsTokenLink: String,
-    val isAvailable: Boolean
+    val isAvailable: Boolean,
 )

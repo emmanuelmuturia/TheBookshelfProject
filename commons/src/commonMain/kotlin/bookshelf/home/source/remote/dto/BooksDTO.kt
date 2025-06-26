@@ -1,6 +1,5 @@
 package bookshelf.home.source.remote.dto
 
-
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -11,5 +10,5 @@ data class BooksDTO(
     @SerialName("kind")
     val kind: String,
     @SerialName("totalItems")
-    val totalItems: Int
+    val totalItems: Int,
 )

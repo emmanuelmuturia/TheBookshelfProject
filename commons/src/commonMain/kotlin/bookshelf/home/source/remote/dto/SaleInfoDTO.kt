@@ -1,6 +1,5 @@
 package bookshelf.home.source.remote.dto
 
-
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -13,5 +12,5 @@ data class SaleInfoDTO(
     @SerialName("isEbook")
     val isEbook: Boolean,
     @SerialName("saleability")
-    val saleability: String
+    val saleability: String,
 )

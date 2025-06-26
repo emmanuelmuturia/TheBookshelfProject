@@ -8,13 +8,16 @@ import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.bind
 import org.koin.dsl.module
 
-val bookshelfDataKoinModule = module {
+val bookshelfDataKoinModule =
+    module {
 
-    singleOf(::BookshelfRepositoryImplementation).bind(clazz = BookshelfRepository::class)
+        singleOf(::BookshelfRepositoryImplementation).bind(clazz = BookshelfRepository::class)
 
-    includes(module = listOf(
-        bookshelfLocalSourceKoinModule,
-        bookshelfRemoteSourceKoinModule
-    ))
-
-}
+        includes(
+            module =
+                listOf(
+                    bookshelfLocalSourceKoinModule,
+                    bookshelfRemoteSourceKoinModule,
+                ),
+        )
+    }

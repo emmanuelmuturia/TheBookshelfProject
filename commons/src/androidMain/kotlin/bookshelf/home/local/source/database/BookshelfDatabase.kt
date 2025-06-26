@@ -9,7 +9,7 @@ fun getBookshelfDatabase(context: Context): BookshelfDatabase {
     val databaseFile = context.getDatabasePath("bookshelfDatabase.db")
     return Room.databaseBuilder<BookshelfDatabase>(
         context = context.applicationContext,
-        name = databaseFile.absolutePath
+        name = databaseFile.absolutePath,
     ).setDriver(driver = BundledSQLiteDriver())
         .build()
 }

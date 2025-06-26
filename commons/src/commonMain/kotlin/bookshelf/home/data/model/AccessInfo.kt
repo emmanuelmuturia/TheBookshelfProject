@@ -10,5 +10,5 @@ data class AccessInfo(
     val quoteSharingAllowed: Boolean,
     val textToSpeechPermission: String,
     val viewability: String,
-    val webReaderLink: String
+    val webReaderLink: String,
 )

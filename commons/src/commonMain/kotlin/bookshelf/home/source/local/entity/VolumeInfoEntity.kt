@@ -27,5 +27,5 @@ data class VolumeInfoEntity(
     @Embedded(prefix = "readingModes")
     val readingModesEntity: ReadingModesEntity,
     val subtitle: String,
-    val title: String
+    val title: String,
 )

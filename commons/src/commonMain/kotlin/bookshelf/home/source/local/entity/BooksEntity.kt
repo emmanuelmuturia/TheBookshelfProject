@@ -1,6 +1,5 @@
 package bookshelf.home.source.local.entity
 
-
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -14,5 +13,5 @@ data class BooksEntity(
     @ColumnInfo(name = "kind")
     val kind: String,
     @ColumnInfo(name = "totalItems")
-    val totalItems: Int
+    val totalItems: Int,
 )

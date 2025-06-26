@@ -5,5 +5,6 @@ import kotlinx.coroutines.flow.Flow
 
 interface BookshelfLocalSource {
     suspend fun getBooks(bookQquery: String): Flow<List<Books>>
+
     suspend fun fetchRemoteBooks(bookQuery: String)
 }

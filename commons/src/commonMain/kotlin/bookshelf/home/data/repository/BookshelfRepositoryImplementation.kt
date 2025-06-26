@@ -9,8 +9,8 @@ import kotlinx.coroutines.withContext
 
 class BookshelfRepositoryImplementation(
     private val coroutineDispatcher: CoroutineDispatcher,
-    private val bookshelfLocalSource: BookshelfLocalSource
-): BookshelfRepository {
+    private val bookshelfLocalSource: BookshelfLocalSource,
+) : BookshelfRepository {
     override suspend fun getBooks(bookQuery: String): Flow<List<Books>> {
         return withContext(context = coroutineDispatcher) {
             bookshelfLocalSource.getBooks(bookQquery = bookQuery).map { books ->
@@ -18,7 +18,7 @@ class BookshelfRepositoryImplementation(
                     Books(
                         items = book.items,
                         kind = book.kind,
-                        totalItems = book.totalItems
+                        totalItems = book.totalItems,
                     )
                 }
             }

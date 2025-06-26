@@ -1,6 +1,5 @@
 package bookshelf.home.source.remote.dto
 
-
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -9,5 +8,5 @@ data class EpubDTO(
     @SerialName("downloadLink")
     val downloadLink: String,
     @SerialName("isAvailable")
-    val isAvailable: Boolean
+    val isAvailable: Boolean,
 )
