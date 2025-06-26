@@ -26,6 +26,9 @@ class BookshelfApplication : Application() {
         initKoin {
             androidLogger()
             androidContext(androidContext = this@BookshelfApplication)
+            modules(modules = listOf(
+                bookshelfAndroidKoinModule
+            ))
         }
     }
 }
