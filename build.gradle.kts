@@ -6,6 +6,7 @@ plugins {
     alias(notation = libs.plugins.kotlinMultiplatform).apply(apply = false)
     alias(notation = libs.plugins.compose.compiler).apply(apply = false)
     alias(notation = libs.plugins.ksp).apply(apply = false)
+    alias(notation = libs.plugins.room).apply(apply = false)
     alias(notation = libs.plugins.kotlin.serialization.json).apply(apply = false)
     alias(notation = libs.plugins.ktlint)
     alias(notation = libs.plugins.detekt)

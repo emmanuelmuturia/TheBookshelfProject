@@ -1,6 +1,7 @@
 package bookshelf.home.data.repository
 
 import bookshelf.home.data.model.Books
+import bookshelf.home.data.model.toItem
 import bookshelf.home.source.local.source.BookshelfLocalSource
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
@@ -16,7 +17,7 @@ class BookshelfRepositoryImplementation(
             bookshelfLocalSource.getBooks(bookQquery = bookQuery).map { books ->
                 books.map { book ->
                     Books(
-                        items = book.items,
+                        items = book.itemEntities.map { it.toItem() },
                         kind = book.kind,
                         totalItems = book.totalItems,
                     )

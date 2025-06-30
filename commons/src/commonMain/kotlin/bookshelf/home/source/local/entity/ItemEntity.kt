@@ -1,6 +1,7 @@
 package bookshelf.home.source.local.entity
 
 import androidx.room.Embedded
+import bookshelf.home.data.model.Item
 import kotlinx.serialization.Serializable
 
 @Serializable

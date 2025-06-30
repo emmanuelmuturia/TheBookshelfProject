@@ -6,7 +6,7 @@ import androidx.sqlite.driver.bundled.BundledSQLiteDriver
 import bookshelf.home.source.local.database.BookshelfDatabase
 
 fun getBookshelfDatabase(context: Context): BookshelfDatabase {
-    val databaseFile = context.getDatabasePath("bookshelfDatabase.db")
+    val databaseFile = context.getDatabasePath("bookshelf.db")
     return Room.databaseBuilder<BookshelfDatabase>(
         context = context.applicationContext,
         name = databaseFile.absolutePath,

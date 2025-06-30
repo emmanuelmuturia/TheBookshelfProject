@@ -1,8 +1,8 @@
 package bookshelf.home.source.local.source
 
-import bookshelf.home.data.model.Books
 import bookshelf.home.source.local.dao.BookshelfDao
 import bookshelf.home.source.local.entity.BooksEntity
+import bookshelf.home.source.remote.source.BookshelfRemoteSource
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.request.get
@@ -15,38 +15,21 @@ import kotlinx.coroutines.withContext
 class BookshelfLocalSourceImplementation(
     private val coroutineDispatcher: CoroutineDispatcher,
     private val bookshelfDao: BookshelfDao,
-    private val httpClient: HttpClient,
+    private val bookshelfRemoteSource: BookshelfRemoteSource
 ) : BookshelfLocalSource {
-    override suspend fun getBooks(bookQuery: String): Flow<List<Books>> {
+    override suspend fun getBooks(): Flow<List<BooksEntity>> {
         return withContext(context = coroutineDispatcher) {
-            bookshelfDao.getBooks(bookQuery = bookQuery)
+            bookshelfDao.getBooks()
         }.onEach {
             if (it.isEmpty()) {
-                fetchRemoteBooks(bookQuery = bookQuery)
+                fetchRemoteBooks()
             }
         }
     }
 
-    override suspend fun fetchRemoteBooks(bookQuery: String) {
+    override suspend fun fetchRemoteBooks() {
         withContext(context = coroutineDispatcher) {
-            val response =
-                httpClient.get(urlString = "https://www.googleapis.com/books/v1/volumes") {
-                    url {
-                        parameters.append(name = "q", value = bookQuery)
-                    }
-                }
-            if (response.status == HttpStatusCode.OK) {
-                response.body<List<Books>>().map {
-                    bookshelfDao.insertBook(
-                        book =
-                            BooksEntity(
-                                itemEntities = it.items,
-                                kind = it.kind,
-                                totalItems = it.totalItems,
-                            ),
-                    )
-                }
-            }
+            bookshelfRemoteSource.getBooks()
         }
     }
 }

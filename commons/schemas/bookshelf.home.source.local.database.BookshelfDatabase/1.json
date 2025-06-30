@@ -1,0 +1,49 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "be67caf577ca01a48ebf9c25f121a947",
+    "entities": [
+      {
+        "tableName": "Bookshelf",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`bookshelfId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `items` TEXT NOT NULL, `kind` TEXT NOT NULL, `totalItems` INTEGER NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "bookshelfId",
+            "columnName": "bookshelfId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "itemEntities",
+            "columnName": "items",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "kind",
+            "columnName": "kind",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "totalItems",
+            "columnName": "totalItems",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "bookshelfId"
+          ]
+        }
+      }
+    ],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'be67caf577ca01a48ebf9c25f121a947')"
+    ]
+  }
+}

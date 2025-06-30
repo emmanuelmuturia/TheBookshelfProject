@@ -9,9 +9,11 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface BookshelfDao {
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertBook(book: BooksEntity)
 
-    @Query(value = "SELECT * FROM BooksEntity")
-    fun getBooks(bookQuery: String): Flow<List<BooksEntity>>
+    @Query(value = "SELECT * FROM Bookshelf")
+    fun getBooks(): Flow<List<BooksEntity>>
+
 }

@@ -1,5 +1,7 @@
 package bookshelf.home.data.model
 
+import bookshelf.home.source.local.entity.VolumeInfoEntity
+
 data class VolumeInfo(
     val allowAnonLogging: Boolean,
     val authors: List<String>,
@@ -22,3 +24,28 @@ data class VolumeInfo(
     val subtitle: String,
     val title: String,
 )
+
+fun VolumeInfoEntity.toVolumeInfo(): VolumeInfo {
+    return VolumeInfo(
+        allowAnonLogging = allowAnonLogging,
+        authors = authors,
+        canonicalVolumeLink = canonicalVolumeLink,
+        categories = categories,
+        contentVersion = contentVersion,
+        description = description,
+        imageLinks = imageLinksEntity.toImageLinks(),
+        industryIdentifiers = industryIdentifierEntities.map { it.toIndustryIdentifier() },
+        infoLink = infoLink,
+        language = language,
+        maturityRating = maturityRating,
+        pageCount = pageCount,
+        panelizationSummary = panelizationSummaryEntity.toPanelizationSummary(),
+        previewLink = previewLink,
+        printType = printType,
+        publishedDate = publishedDate,
+        publisher = publisher,
+        readingModes = readingModesEntity.toReadingModes(),
+        subtitle = subtitle,
+        title = title,
+    )
+}

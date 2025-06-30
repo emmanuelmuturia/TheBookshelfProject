@@ -1,10 +1,10 @@
 package bookshelf.home.source.local.source
 
-import bookshelf.home.data.model.Books
+import bookshelf.home.source.local.entity.BooksEntity
 import kotlinx.coroutines.flow.Flow
 
 interface BookshelfLocalSource {
-    suspend fun getBooks(bookQquery: String): Flow<List<Books>>
+    suspend fun getBooks(): Flow<List<BooksEntity>>
 
-    suspend fun fetchRemoteBooks(bookQuery: String)
+    suspend fun fetchRemoteBooks()
 }
