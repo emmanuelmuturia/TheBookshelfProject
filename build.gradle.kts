@@ -22,6 +22,12 @@ subprojects {
             exclude("**/generated/**")
         }
     }
+    tasks.withType<org.jlleitschuh.gradle.ktlint.tasks.BaseKtLintCheckTask>().configureEach {
+        exclude { fileTreeElement ->
+            val path = fileTreeElement.file.absolutePath
+            path.contains(other = "/build/generated/") || path.contains(other = "/build/ksp/")
+        }
+    }
 
     apply(plugin = rootProject.libs.plugins.spotless.get().pluginId)
     configure<com.diffplug.gradle.spotless.SpotlessExtension> {
@@ -60,4 +66,5 @@ subprojects {
 apply(plugin = rootProject.libs.plugins.detekt.get().pluginId)
 detekt {
     parallel = true
+    config.setFrom(files("${project.rootDir}/detekt/detekt.yml"))
 }

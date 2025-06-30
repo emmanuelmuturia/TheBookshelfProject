@@ -1,0 +1,4 @@
+# Set global exclusions for all rules
+excludes:
+  - '**/build/**'
+  - '**/generated/**'

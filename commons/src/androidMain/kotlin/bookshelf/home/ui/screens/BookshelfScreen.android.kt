@@ -1,3 +1,18 @@
+/*
+ * Copyright 2025 The Bookshelf Project
+ *
+ * Licenced under the Apache License, Version 2.0 (the "Licence");
+ * you may not use this file except in compliance with the Licence.
+ * You may obtain a copy of the Licence at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the Licence is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the Licence for the specific language governing permissions and
+ * limitations under the Licence.
+ */
 package bookshelf.home.ui.screens
 
 import android.util.Log
@@ -37,13 +52,11 @@ import bookshelf.home.ui.state.BookshelfScreenUIState
 import bookshelf.home.ui.viewmodel.BookshelfScreenViewModel
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
-import com.skydoves.landscapist.ImageOptions
 import org.koin.androidx.compose.koinViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 actual fun BookshelfScreen() {
-
     val bookshelfScreenViewModel = koinViewModel<BookshelfScreenViewModel>()
 
     val bookshelfScreenUIState: BookshelfScreenUIState by bookshelfScreenViewModel.bookshelfScreenUIState.collectAsStateWithLifecycle()
@@ -74,19 +87,17 @@ actual fun BookshelfScreen() {
     ) { paddingValues ->
         BookshelfScreenContent(
             modifier = Modifier.padding(paddingValues = paddingValues),
-            bookshelfScreenUIState = bookshelfScreenUIState
+            bookshelfScreenUIState = bookshelfScreenUIState,
         )
     }
-
 }
 
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable
 private fun BookshelfScreenContent(
     modifier: Modifier,
-    bookshelfScreenUIState: BookshelfScreenUIState
+    bookshelfScreenUIState: BookshelfScreenUIState,
 ) {
-
     val allItems: List<Item> = bookshelfScreenUIState.books.flatMap { it.items ?: emptyList() }
 
     AnimatedVisibility(visible = bookshelfScreenUIState.isLoading) {
@@ -111,7 +122,7 @@ private fun BookshelfScreenContent(
         LazyColumn(
             modifier = modifier.fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
+            verticalArrangement = Arrangement.Center,
         ) {
             item {
                 Text(text = "${bookshelfScreenUIState.error}")
@@ -120,37 +131,33 @@ private fun BookshelfScreenContent(
     }
 
     AnimatedVisibility(visible = bookshelfScreenUIState.books.isNotEmpty()) {
-
-            LazyVerticalStaggeredGrid(
-                modifier = modifier.fillMaxSize(),
-                columns = StaggeredGridCells.Fixed(count = 2),
-                verticalItemSpacing = 3.dp,
-                horizontalArrangement = Arrangement.spacedBy(space = 3.dp)
-            ) {
-                items(items = allItems) { item ->
-                    GlideImage(
-                        modifier =
-                            Modifier.fillMaxWidth().wrapContentHeight(),
-                        model = item.volumeInfo?.imageLinks?.thumbnail,
-                        contentScale = ContentScale.Crop,
-                        contentDescription = "Book Cover...",
-                    )
-                }
+        LazyVerticalStaggeredGrid(
+            modifier = modifier.fillMaxSize(),
+            columns = StaggeredGridCells.Fixed(count = 2),
+            verticalItemSpacing = 3.dp,
+            horizontalArrangement = Arrangement.spacedBy(space = 3.dp),
+        ) {
+            items(items = allItems) { item ->
+                GlideImage(
+                    modifier =
+                        Modifier.fillMaxWidth().wrapContentHeight(),
+                    model = item.volumeInfo?.imageLinks?.thumbnail,
+                    contentScale = ContentScale.Crop,
+                    contentDescription = "Book Cover...",
+                )
             }
-
-
+        }
     }
 
     AnimatedVisibility(visible = bookshelfScreenUIState.books.isEmpty()) {
         LazyColumn(
             modifier = modifier.fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
+            verticalArrangement = Arrangement.Center,
         ) {
             item {
                 Text(text = "No Books Found...")
             }
         }
     }
-
 }

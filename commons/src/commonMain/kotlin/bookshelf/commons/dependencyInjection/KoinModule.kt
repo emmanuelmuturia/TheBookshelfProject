@@ -26,7 +26,7 @@ fun initKoin(config: KoinAppDeclaration? = null) =
             modules =
                 listOf(
                     commonsKoinModule,
-                    bookshelfUIKoinModule
+                    bookshelfUIKoinModule,
                 ),
         )
     }

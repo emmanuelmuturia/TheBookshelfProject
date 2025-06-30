@@ -1,3 +1,18 @@
+/*
+ * Copyright 2025 The Bookshelf Project
+ *
+ * Licenced under the Apache License, Version 2.0 (the "Licence");
+ * you may not use this file except in compliance with the Licence.
+ * You may obtain a copy of the Licence at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the Licence is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the Licence for the specific language governing permissions and
+ * limitations under the Licence.
+ */
 package bookshelf.home.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
@@ -11,9 +26,8 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class BookshelfScreenViewModel(
-    private val bookshelfRepository: BookshelfRepository
+    private val bookshelfRepository: BookshelfRepository,
 ) : ViewModel() {
-
     val bookshelfScreenUIState = MutableStateFlow(value = BookshelfScreenUIState())
 
     init {
@@ -23,16 +37,14 @@ class BookshelfScreenViewModel(
     fun getBooks() {
         bookshelfScreenUIState.update { it.copy(isLoading = true) }
         viewModelScope.launch {
-
             bookshelfRepository.getBooks().asResult().collect { result ->
 
                 when (result) {
-
                     is BookshelfResult.Success -> {
                         bookshelfScreenUIState.update {
                             it.copy(
                                 books = result.data,
-                                isLoading = false
+                                isLoading = false,
                             )
                         }
                     }
@@ -41,16 +53,12 @@ class BookshelfScreenViewModel(
                         bookshelfScreenUIState.update {
                             it.copy(
                                 error = result.error,
-                                isLoading = false
+                                isLoading = false,
                             )
                         }
                     }
-
                 }
-
             }
-
         }
     }
-
 }
