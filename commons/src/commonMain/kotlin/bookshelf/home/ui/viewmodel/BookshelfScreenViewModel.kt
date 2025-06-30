@@ -40,7 +40,7 @@ class BookshelfScreenViewModel(
                     is BookshelfResult.Error -> {
                         bookshelfScreenUIState.update {
                             it.copy(
-                                errorMessage = result.error,
+                                error = result.error,
                                 isLoading = false
                             )
                         }
