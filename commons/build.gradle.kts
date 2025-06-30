@@ -21,6 +21,7 @@ plugins {
     alias(notation = libs.plugins.ksp)
     alias(notation = libs.plugins.kotlin.serialization.json)
     alias(notation = libs.plugins.room)
+    alias(notation = libs.plugins.compose.compiler)
 }
 
 kotlin {
@@ -54,6 +55,7 @@ kotlin {
             implementation(dependencyNotation = libs.compose.ui.tooling.preview)
             implementation(dependencyNotation = libs.compose.material3)
             implementation(dependencyNotation = libs.landscapist.glide)
+            implementation(dependencyNotation = libs.glide)
         }
         commonMain.dependencies {
             // Put your Multiplatform Dependencies here...
@@ -61,6 +63,8 @@ kotlin {
             implementation(dependencyNotation = libs.koin.compose)
             implementation(dependencyNotation = libs.koin.compose.viewmodel)
             implementation(dependencyNotation = libs.ktor.client.core)
+            implementation(dependencyNotation = libs.ktor.client.content.negotiation)
+            implementation(dependencyNotation = libs.ktor.serialization.kotlinx.json)
             implementation(dependencyNotation = libs.kotlinx.coroutines.core)
             implementation(dependencyNotation = libs.timber)
             implementation(dependencyNotation = libs.lifecycle.viewmodel)
@@ -86,6 +90,9 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
+    }
+    buildFeatures {
+        compose = true
     }
 }
 

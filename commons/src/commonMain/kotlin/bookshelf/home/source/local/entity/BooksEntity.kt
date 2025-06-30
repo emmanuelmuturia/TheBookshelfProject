@@ -9,9 +9,9 @@ data class BooksEntity(
     @PrimaryKey(autoGenerate = true)
     val bookshelfId: Int = 0,
     @ColumnInfo(name = "items")
-    val itemEntities: List<ItemEntity>,
+    val itemEntities: List<ItemEntity>? = null,
     @ColumnInfo(name = "kind")
-    val kind: String,
+    val kind: String? = null,
     @ColumnInfo(name = "totalItems")
-    val totalItems: Int,
+    val totalItems: Int? = null,
 )

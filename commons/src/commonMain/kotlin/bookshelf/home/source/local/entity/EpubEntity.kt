@@ -4,6 +4,6 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class EpubEntity(
-    val downloadLink: String,
-    val isAvailable: Boolean,
+    val downloadLink: String? = null,
+    val isAvailable: Boolean? = null,
 )

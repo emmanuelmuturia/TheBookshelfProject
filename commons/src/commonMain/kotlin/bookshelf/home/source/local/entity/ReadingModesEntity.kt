@@ -4,6 +4,6 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class ReadingModesEntity(
-    val image: Boolean,
-    val text: Boolean,
+    val image: Boolean? = null,
+    val text: Boolean? = null,
 )

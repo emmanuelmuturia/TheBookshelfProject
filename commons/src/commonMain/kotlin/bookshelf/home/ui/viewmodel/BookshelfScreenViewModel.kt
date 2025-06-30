@@ -17,14 +17,14 @@ class BookshelfScreenViewModel(
     val bookshelfScreenUIState = MutableStateFlow(value = BookshelfScreenUIState())
 
     init {
-        getBooks(bookQuery = bookshelfScreenUIState.value.bookQuery)
+        getBooks()
     }
 
-    fun getBooks(bookQuery: String) {
+    fun getBooks() {
         bookshelfScreenUIState.update { it.copy(isLoading = true) }
         viewModelScope.launch {
 
-            bookshelfRepository.getBooks(bookQuery = bookQuery).asResult().collect { result ->
+            bookshelfRepository.getBooks().asResult().collect { result ->
 
                 when (result) {
 

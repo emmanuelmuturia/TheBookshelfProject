@@ -1,5 +1,6 @@
 package bookshelf.home.source.remote.dto
 
+import bookshelf.home.source.local.entity.AccessInfoEntity
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -25,4 +26,19 @@ data class AccessInfoDTO(
     val viewability: String,
     @SerialName("webReaderLink")
     val webReaderLink: String,
-)
+) {
+    fun toAccessInfoEntity(): AccessInfoEntity {
+        return AccessInfoEntity(
+            accessViewStatus = accessViewStatus,
+            country = country,
+            embeddable = embeddable,
+            epubEntity = epubDTO.toEpubEntity(),
+            pdfEntity = pdfDTO.toPdfEntity(),
+            publicDomain = publicDomain,
+            quoteSharingAllowed = quoteSharingAllowed,
+            textToSpeechPermission = textToSpeechPermission,
+            viewability = viewability,
+            webReaderLink = webReaderLink,
+        )
+    }
+}

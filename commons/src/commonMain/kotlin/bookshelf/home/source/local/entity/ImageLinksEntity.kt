@@ -4,6 +4,6 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class ImageLinksEntity(
-    val smallThumbnail: String,
-    val thumbnail: String,
+    val smallThumbnail: String? = null,
+    val thumbnail: String? = null,
 )

@@ -1,11 +1,15 @@
 package bookshelf.home.ui.screens
 
+import android.util.Log
 import android.widget.Toast
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.staggeredgrid.LazyVerticalStaggeredGrid
 import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
 import androidx.compose.foundation.lazy.staggeredgrid.items
@@ -28,10 +32,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import bookshelf.home.data.model.Item
 import bookshelf.home.ui.state.BookshelfScreenUIState
 import bookshelf.home.ui.viewmodel.BookshelfScreenViewModel
+import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
+import com.bumptech.glide.integration.compose.GlideImage
 import com.skydoves.landscapist.ImageOptions
-import com.skydoves.landscapist.glide.GlideImage
 import org.koin.androidx.compose.koinViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -74,11 +80,14 @@ actual fun BookshelfScreen() {
 
 }
 
+@OptIn(ExperimentalGlideComposeApi::class)
 @Composable
 private fun BookshelfScreenContent(
     modifier: Modifier,
     bookshelfScreenUIState: BookshelfScreenUIState
 ) {
+
+    val allItems: List<Item> = bookshelfScreenUIState.books.flatMap { it.items ?: emptyList() }
 
     AnimatedVisibility(visible = bookshelfScreenUIState.isLoading) {
         Box(
@@ -98,30 +107,50 @@ private fun BookshelfScreenContent(
     AnimatedVisibility(visible = bookshelfScreenUIState.error != null) {
         val context = LocalContext.current
         Toast.makeText(context, "${bookshelfScreenUIState.error}", Toast.LENGTH_LONG).show()
+        Log.d("BookshelfScreen", "${bookshelfScreenUIState.error}")
+        LazyColumn(
+            modifier = modifier.fillMaxSize(),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
+        ) {
+            item {
+                Text(text = "${bookshelfScreenUIState.error}")
+            }
+        }
     }
 
     AnimatedVisibility(visible = bookshelfScreenUIState.books.isNotEmpty()) {
 
-        LazyVerticalStaggeredGrid(
-            modifier = modifier,
-            columns = StaggeredGridCells.Fixed(count = 2),
-            verticalItemSpacing = 3.dp,
-            horizontalArrangement = Arrangement.spacedBy(space = 3.dp)
-        ) {
-            items(items = bookshelfScreenUIState.books) { book ->
-                GlideImage(
-                    modifier =
-                        Modifier.fillMaxSize(),
-                    imageModel = { book.items.first().volumeInfo.imageLinks.thumbnail },
-                    imageOptions = ImageOptions(
+            LazyVerticalStaggeredGrid(
+                modifier = modifier.fillMaxSize(),
+                columns = StaggeredGridCells.Fixed(count = 2),
+                verticalItemSpacing = 3.dp,
+                horizontalArrangement = Arrangement.spacedBy(space = 3.dp)
+            ) {
+                items(items = allItems) { item ->
+                    GlideImage(
+                        modifier =
+                            Modifier.fillMaxWidth().wrapContentHeight(),
+                        model = item.volumeInfo?.imageLinks?.thumbnail,
                         contentScale = ContentScale.Crop,
-                        alignment = Alignment.Center
-
+                        contentDescription = "Book Cover...",
                     )
-                )
+                }
+            }
+
+
+    }
+
+    AnimatedVisibility(visible = bookshelfScreenUIState.books.isEmpty()) {
+        LazyColumn(
+            modifier = modifier.fillMaxSize(),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
+        ) {
+            item {
+                Text(text = "No Books Found...")
             }
         }
-
     }
 
 }

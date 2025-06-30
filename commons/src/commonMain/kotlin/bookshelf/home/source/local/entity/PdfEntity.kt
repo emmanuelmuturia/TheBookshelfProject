@@ -4,6 +4,6 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class PdfEntity(
-    val acsTokenLink: String,
-    val isAvailable: Boolean,
+    val acsTokenLink: String? = null,
+    val isAvailable: Boolean? = null,
 )

@@ -4,6 +4,6 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class PanelizationSummaryEntity(
-    val containsEpubBubbles: Boolean,
-    val containsImageBubbles: Boolean,
+    val containsEpubBubbles: Boolean? = null,
+    val containsImageBubbles: Boolean? = null,
 )

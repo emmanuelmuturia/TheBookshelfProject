@@ -12,12 +12,12 @@ class BookshelfRepositoryImplementation(
     private val coroutineDispatcher: CoroutineDispatcher,
     private val bookshelfLocalSource: BookshelfLocalSource,
 ) : BookshelfRepository {
-    override suspend fun getBooks(bookQuery: String): Flow<List<Books>> {
+    override suspend fun getBooks(): Flow<List<Books>> {
         return withContext(context = coroutineDispatcher) {
-            bookshelfLocalSource.getBooks(bookQquery = bookQuery).map { books ->
+            bookshelfLocalSource.getBooks().map { books ->
                 books.map { book ->
                     Books(
-                        items = book.itemEntities.map { it.toItem() },
+                        items = book.itemEntities?.map { it.toItem() },
                         kind = book.kind,
                         totalItems = book.totalItems,
                     )
