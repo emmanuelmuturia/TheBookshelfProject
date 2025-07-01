@@ -61,4 +61,32 @@ class BookshelfScreenViewModel(
             }
         }
     }
+
+    fun searchBooks(bookQuery: String) {
+        bookshelfScreenUIState.update { it.copy(isLoading = true) }
+        viewModelScope.launch {
+            bookshelfRepository.searchBook(bookQuery = bookQuery).asResult().collect { result ->
+
+                when (result) {
+                    is BookshelfResult.Success -> {
+                        bookshelfScreenUIState.update {
+                            it.copy(
+                                books = result.data,
+                                isLoading = false,
+                            )
+                        }
+                    }
+
+                    is BookshelfResult.Error -> {
+                        bookshelfScreenUIState.update {
+                            it.copy(
+                                error = result.error,
+                                isLoading = false,
+                            )
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

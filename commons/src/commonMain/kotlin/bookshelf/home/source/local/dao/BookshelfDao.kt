@@ -32,4 +32,8 @@ interface BookshelfDao {
     @Query(value = "SELECT * FROM Bookshelf")
     fun getBooks(): Flow<List<BooksEntity>>
 
+    @Transaction
+    @Query(value = "DELETE FROM Bookshelf")
+    suspend fun deleteBooks()
+
 }

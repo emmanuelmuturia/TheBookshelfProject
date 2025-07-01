@@ -22,4 +22,6 @@ interface BookshelfLocalSource {
     suspend fun getBooks(): Flow<List<BooksEntity>>
 
     suspend fun fetchRemoteBooks()
+
+    suspend fun searchBooks(bookQuery: String)
 }

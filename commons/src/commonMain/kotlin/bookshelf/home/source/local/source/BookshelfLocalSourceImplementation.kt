@@ -58,4 +58,21 @@ class BookshelfLocalSourceImplementation(
             }
         }
     }
+
+    override suspend fun searchBooks(bookQuery: String) {
+        withContext(context = coroutineDispatcher) {
+            val response =
+                httpClient.get(urlString = "https://www.googleapis.com/books/v1/volumes") {
+                    url {
+                        parameters.append(name = "q", value = bookQuery)
+                    }
+                }
+            if (response.status == HttpStatusCode.OK) {
+                bookshelfDao.deleteBooks()
+                bookshelfDao.insertBook(book = response.body<BooksDTO>().toBooksEntity())
+            } else {
+                BookshelfResult.Error(error = response.status.description)
+            }
+        }
+    }
 }

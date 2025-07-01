@@ -40,4 +40,11 @@ class BookshelfRepositoryImplementation(
             }
         }
     }
+
+    override suspend fun searchBook(bookQuery: String): Flow<List<Books>> {
+        return withContext(context = coroutineDispatcher) {
+            bookshelfLocalSource.searchBooks(bookQuery = bookQuery)
+            getBooks()
+        }
+    }
 }
