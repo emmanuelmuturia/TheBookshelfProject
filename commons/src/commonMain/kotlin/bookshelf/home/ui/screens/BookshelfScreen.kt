@@ -65,13 +65,10 @@ import com.skydoves.landscapist.ImageOptions
 import com.skydoves.landscapist.coil3.CoilImage
 import org.koin.compose.viewmodel.koinViewModel
 
-
 class BookshelfScreen() : Screen {
-
     @OptIn(ExperimentalMaterial3Api::class)
     @Composable
     override fun Content() {
-
         val bookshelfScreenViewModel = koinViewModel<BookshelfScreenViewModel>()
 
         val bookshelfScreenUIState: BookshelfScreenUIState by bookshelfScreenViewModel.bookshelfScreenUIState.collectAsStateWithLifecycle()
@@ -103,18 +100,17 @@ class BookshelfScreen() : Screen {
             BookshelfScreenContent(
                 modifier = Modifier.padding(paddingValues = paddingValues),
                 bookshelfScreenUIState = bookshelfScreenUIState,
-                bookshelfScreenViewModel = bookshelfScreenViewModel
+                bookshelfScreenViewModel = bookshelfScreenViewModel,
             )
         }
     }
-
 }
 
 @Composable
 private fun BookshelfScreenContent(
     modifier: Modifier,
     bookshelfScreenUIState: BookshelfScreenUIState,
-    bookshelfScreenViewModel: BookshelfScreenViewModel
+    bookshelfScreenViewModel: BookshelfScreenViewModel,
 ) {
     val allItems: List<Item> = bookshelfScreenUIState.books.flatMap { it.items ?: emptyList() }
 
@@ -150,19 +146,17 @@ private fun BookshelfScreenContent(
     }
 
     AnimatedVisibility(visible = bookshelfScreenUIState.books.isNotEmpty()) {
-
         Column(
             modifier = Modifier.fillMaxSize().padding(top = 70.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Top,
         ) {
-
             BookSearchBar(
                 bookQuery = bookQuery,
                 onBookQueryChange = { bookQuery = it },
                 onSearchBook = {
                     bookshelfScreenViewModel.searchBooks(bookQuery = bookQuery)
-                }
+                },
             )
 
             Spacer(modifier = Modifier.height(height = 7.dp))
@@ -175,42 +169,41 @@ private fun BookshelfScreenContent(
             ) {
                 items(items = allItems) { item ->
                     CoilImage(
-                        modifier = Modifier.clickable {
-                            item.id?.let { navigator.push(BookshelfDetailsScreen(bookId = it)) }
-                        },
+                        modifier =
+                            Modifier.clickable {
+                                item.id?.let { navigator.push(BookshelfDetailsScreen(bookId = it)) }
+                            },
                         imageModel = { item.volumeInfo?.imageLinks?.thumbnail },
-                        imageOptions = ImageOptions(
-                            contentScale = ContentScale.Crop,
-                            alignment = Alignment.Center
-                        )
+                        imageOptions =
+                            ImageOptions(
+                                contentScale = ContentScale.Crop,
+                                alignment = Alignment.Center,
+                            ),
                     )
                 }
             }
-
         }
-
     }
 
-     AnimatedVisibility(visible = bookshelfScreenUIState.books.isEmpty()) {
-         LazyColumn(
-             modifier = modifier.fillMaxSize(),
-             horizontalAlignment = Alignment.CenterHorizontally,
-             verticalArrangement = Arrangement.Center,
-         ) {
-             item {
-                 Text(text = "No Books Found...")
-             }
-         }
-     }
+    AnimatedVisibility(visible = bookshelfScreenUIState.books.isEmpty()) {
+        LazyColumn(
+            modifier = modifier.fillMaxSize(),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center,
+        ) {
+            item {
+                Text(text = "No Books Found...")
+            }
+        }
+    }
 }
 
 @Composable
 private fun BookSearchBar(
     bookQuery: String,
     onBookQueryChange: (String) -> Unit,
-    onSearchBook: (String) -> Unit
+    onSearchBook: (String) -> Unit,
 ) {
-
     OutlinedTextField(
         modifier =
             Modifier.semantics {
@@ -247,5 +240,4 @@ private fun BookSearchBar(
                 unfocusedContainerColor = MaterialTheme.colorScheme.background,
             ),
     )
-
 }

@@ -66,9 +66,10 @@ class BookshelfScreenViewModel(
         viewModelScope.launch {
             bookshelfScreenUIState.update { it.copy(isLoading = true) }
 
-            val result = runCatching {
-                bookshelfRepository.searchBook(bookQuery = bookQuery)
-            }
+            val result =
+                runCatching {
+                    bookshelfRepository.searchBook(bookQuery = bookQuery)
+                }
 
             result.onSuccess {
                 getBooks()

@@ -25,7 +25,6 @@ import androidx.compose.ui.Modifier
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import bookshelf.bookshelf.android.theme.BookshelfTheme
 import bookshelf.home.ui.screens.BookshelfScreen
-import bookshelf.home.ui.viewmodel.BookshelfDetailsScreenViewModel
 import bookshelf.home.ui.viewmodel.BookshelfScreenViewModel
 import cafe.adriel.voyager.navigator.Navigator
 import org.koin.java.KoinJavaComponent.inject
@@ -45,7 +44,7 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background,
                 ) {
                     Navigator(
-                        screen = BookshelfScreen()
+                        screen = BookshelfScreen(),
                     )
                 }
             }

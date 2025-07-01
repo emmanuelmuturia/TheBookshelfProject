@@ -1,3 +1,18 @@
+/*
+ * Copyright 2025 The Bookshelf Project
+ *
+ * Licenced under the Apache License, Version 2.0 (the "Licence");
+ * you may not use this file except in compliance with the Licence.
+ * You may obtain a copy of the Licence at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the Licence is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the Licence for the specific language governing permissions and
+ * limitations under the Licence.
+ */
 package bookshelf.home.ui.screens
 
 import androidx.compose.animation.AnimatedVisibility
@@ -22,6 +37,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
@@ -39,16 +55,13 @@ import cafe.adriel.voyager.navigator.currentOrThrow
 import com.skydoves.landscapist.ImageOptions
 import com.skydoves.landscapist.coil3.CoilImage
 import org.koin.compose.viewmodel.koinViewModel
-import androidx.compose.runtime.getValue
 
 data class BookshelfDetailsScreen(
     val bookId: String,
 ) : Screen {
-
     @OptIn(ExperimentalMaterial3Api::class)
     @Composable
     override fun Content() {
-
         val bookshelfDetailsScreenViewModel = koinViewModel<BookshelfDetailsScreenViewModel>()
 
         val bookshelfDetailsScreenUIState by bookshelfDetailsScreenViewModel.bookshelfDetailsScreenUIState.collectAsStateWithLifecycle()
@@ -93,25 +106,23 @@ data class BookshelfDetailsScreen(
                                 tint = MaterialTheme.colorScheme.onBackground,
                             )
                         }
-                    }
+                    },
                 )
             },
         ) { paddingValues ->
             BookshelfDetailsScreenContent(
                 modifier = Modifier.padding(paddingValues = paddingValues),
-                bookshelfDetailsScreenUIState = bookshelfDetailsScreenUIState
+                bookshelfDetailsScreenUIState = bookshelfDetailsScreenUIState,
             )
         }
     }
-
 }
 
 @Composable
 private fun BookshelfDetailsScreenContent(
     modifier: Modifier,
-    bookshelfDetailsScreenUIState: BookshelfDetailsScreenUIState
+    bookshelfDetailsScreenUIState: BookshelfDetailsScreenUIState,
 ) {
-
     AnimatedVisibility(visible = bookshelfDetailsScreenUIState.isLoading) {
         Box(
             modifier =
@@ -141,31 +152,32 @@ private fun BookshelfDetailsScreenContent(
 
     AnimatedVisibility(visible = bookshelfDetailsScreenUIState.book != null) {
         LazyColumn(
-            modifier = modifier
-                .fillMaxSize()
-                .padding(16.dp),
+            modifier =
+                modifier
+                    .fillMaxSize()
+                    .padding(16.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(12.dp)
+            verticalArrangement = Arrangement.spacedBy(12.dp),
         ) {
-
             item {
                 CoilImage(
-                    modifier = Modifier.fillMaxWidth().fillMaxWidth(fraction = 0.6f)
-                        .aspectRatio(ratio = 0.75f),
+                    modifier =
+                        Modifier.fillMaxWidth().fillMaxWidth(fraction = 0.6f)
+                            .aspectRatio(ratio = 0.75f),
                     imageModel = { bookshelfDetailsScreenUIState.book?.volumeInfo?.imageLinks?.thumbnail },
-                    imageOptions = ImageOptions(
-                        contentScale = ContentScale.Crop,
-                        contentDescription = "Book Cover...",
-                    )
+                    imageOptions =
+                        ImageOptions(
+                            contentScale = ContentScale.Crop,
+                            contentDescription = "Book Cover...",
+                        ),
                 )
             }
-
 
             item {
                 bookshelfDetailsScreenUIState.book?.volumeInfo?.title?.let {
                     BookDetailRow(
                         label = "Title",
-                        value = it
+                        value = it,
                     )
                 }
             }
@@ -185,8 +197,9 @@ private fun BookshelfDetailsScreenContent(
             item {
                 BookDetailRow(
                     label = "Published",
-                    value = bookshelfDetailsScreenUIState.book?.volumeInfo?.publishedDate
-                        ?: "Unknown..."
+                    value =
+                        bookshelfDetailsScreenUIState.book?.volumeInfo?.publishedDate
+                            ?: "Unknown...",
                 )
             }
 
@@ -194,7 +207,7 @@ private fun BookshelfDetailsScreenContent(
                 bookshelfDetailsScreenUIState.book?.volumeInfo?.language?.let {
                     BookDetailRow(
                         label = "Language",
-                        value = it
+                        value = it,
                     )
                 }
             }
@@ -202,15 +215,16 @@ private fun BookshelfDetailsScreenContent(
             item {
                 BookDetailRow(
                     label = "Pages",
-                    value = bookshelfDetailsScreenUIState.book?.volumeInfo?.pageCount?.toString()
-                        ?: "Unknown..."
+                    value =
+                        bookshelfDetailsScreenUIState.book?.volumeInfo?.pageCount?.toString()
+                            ?: "Unknown...",
                 )
             }
 
             item {
                 BookDetailRow(
                     label = "Preview Link",
-                    value = bookshelfDetailsScreenUIState.book?.volumeInfo?.previewLink ?: "N/A..."
+                    value = bookshelfDetailsScreenUIState.book?.volumeInfo?.previewLink ?: "N/A...",
                 )
             }
 
@@ -218,29 +232,31 @@ private fun BookshelfDetailsScreenContent(
                 bookshelfDetailsScreenUIState.book?.volumeInfo?.maturityRating?.let {
                     BookDetailRow(
                         label = "Maturity",
-                        value = it
+                        value = it,
                     )
                 }
             }
         }
     }
-
 }
 
 @Composable
-fun BookDetailRow(label: String, value: String) {
+fun BookDetailRow(
+    label: String,
+    value: String,
+) {
     Row(
         modifier = Modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.Start
+        horizontalArrangement = Arrangement.Start,
     ) {
         Text(
             text = "$label: ",
             fontWeight = FontWeight.Bold,
-            style = MaterialTheme.typography.bodyMedium
+            style = MaterialTheme.typography.bodyMedium,
         )
         Text(
             text = value,
-            style = MaterialTheme.typography.bodyMedium
+            style = MaterialTheme.typography.bodyMedium,
         )
     }
 }

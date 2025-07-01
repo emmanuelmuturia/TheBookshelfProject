@@ -35,5 +35,4 @@ interface BookshelfDao {
     @Transaction
     @Query(value = "DELETE FROM Bookshelf")
     suspend fun deleteBooks()
-
 }
