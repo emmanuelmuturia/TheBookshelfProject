@@ -23,6 +23,10 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
+/**
+ * This is the Home feature's Details Screen [ViewModel]...
+ */
+
 class BookshelfDetailsScreenViewModel(
     private val bookshelfRepository: BookshelfRepository,
 ) : ViewModel() {

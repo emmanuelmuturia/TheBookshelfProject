@@ -17,6 +17,10 @@ package bookshelf.home.ui.state
 
 import bookshelf.home.data.model.Item
 
+/**
+ * This is the Home feature's Details Screen UI State...
+ */
+
 data class BookshelfDetailsScreenUIState(
     val book: Item? = null,
     val isLoading: Boolean = false,

@@ -56,6 +56,10 @@ import com.skydoves.landscapist.ImageOptions
 import com.skydoves.landscapist.coil3.CoilImage
 import org.koin.compose.viewmodel.koinViewModel
 
+/**
+ * This is the Home feature's Details Screen...
+ */
+
 data class BookshelfDetailsScreen(
     val bookId: String,
 ) : Screen {

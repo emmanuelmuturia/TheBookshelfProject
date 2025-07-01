@@ -20,6 +20,10 @@ import androidx.room.Room
 import androidx.sqlite.driver.bundled.BundledSQLiteDriver
 import bookshelf.home.source.local.database.BookshelfDatabase
 
+/**
+ * This is the Android-specific implementation of the project's [androidx.room.RoomDatabase]...
+ */
+
 fun getBookshelfDatabase(context: Context): BookshelfDatabase {
     val databaseFile = context.getDatabasePath("bookshelf.db")
     return Room.databaseBuilder<BookshelfDatabase>(

@@ -65,6 +65,10 @@ import com.skydoves.landscapist.ImageOptions
 import com.skydoves.landscapist.coil3.CoilImage
 import org.koin.compose.viewmodel.koinViewModel
 
+/**
+ * This is the Home feature's Home Screen...
+ */
+
 class BookshelfScreen() : Screen {
     @OptIn(ExperimentalMaterial3Api::class)
     @Composable

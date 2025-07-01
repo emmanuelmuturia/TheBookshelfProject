@@ -18,6 +18,10 @@ package bookshelf.home.source.remote.source
 import bookshelf.commons.state.BookshelfResult
 import bookshelf.home.source.remote.dto.BooksDTO
 
+/**
+ * This is the Home feature's Remote Data Source...
+ */
+
 interface BookshelfRemoteSource {
     suspend fun getBooks(bookQuery: String): BookshelfResult<List<BooksDTO>>
 }

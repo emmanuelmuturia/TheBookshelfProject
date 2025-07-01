@@ -75,38 +75,39 @@ This is my first DevSecOps project, based on [Introduction To DevSecOps by TryHa
 
 ## 5] Challenges and Solutions
 
-The Bookshelf Project was designed to offer a smooth experience across architecture, networking, and user interaction layers... However, like many modern Android apps, it encountered several challenges during development:
+- The Bookshelf Project was designed to offer a smooth experience across Architecture, Networking, and User Interaction Layers...
+- However, like many modern Mobile Apps, it encountered several challenges during development:
 
 ### a] Glide URL Failure and Image Loading Issues
 
 **Challenge:**
-Glide failed to load book thumbnails due to malformed image URLs (e.g. `httpss://...`) and dimension warnings such as `[536x-2147483648]`.
+Glide failed to load Book Thumbnails due to malformed Image URLs (e.g. `httpss://...`) and Dimension Warnings such as `[536x-2147483648]`...
 
 **Solution:**
-The issue was traced back to a simple typo in the image URL scheme. The problem was fixed by ensuring the URLs used the correct `https://` scheme before passing them into the image loader. The library was then replaced with [Landscapist-Coil3](https://github.com/skydoves/landscapist) for Compose compatibility and better lifecycle handling...
+The issue was traced back to a simple typo in the Image URL Scheme. The problem was fixed by ensuring the URLs used the correct `https://` scheme before passing them into the Image Loader. The library was then replaced with [Landscapist-Coil3](https://github.com/skydoves/landscapist) for Kotlin Multiplatform compatibility and better Lifecycle Handling...
 
 ---
 
 ### b] Implementing a Search Bar on Top of a Staggered Grid
 
 **Challenge:**
-Placing a `SearchBar` above a `LazyVerticalStaggeredGrid` while maintaining smooth scrolling and preserving state.
+Placing a `SearchBar` above a `LazyVerticalStaggeredGrid` while maintaining smooth scrolling and preserving state...
 
 **Solution:**
-A `Column` layout was introduced, placing the `SearchBar` at the top and the `LazyVerticalStaggeredGrid` beneath it. Proper padding and layout constraints were applied to prevent content clipping and scroll overlap...
+A `Column` layout was introduced, placing the `SearchBar` at the top and the `LazyVerticalStaggeredGrid` beneath it. Proper Padding and Layout Constraints were applied to prevent Content Clipping and Scroll Overlap...
 
 ---
 
 ### c] Asynchronous Search with Query-Driven API and Room Sync
 
 **Challenge:**
-Search functionality needed to hit the REST API only when a user submitted a query, and update the local Room DB accordingly—replacing old data...
+Search functionality needed to hit the REST API only when a user submitted a Book Query, and update the local Room DB accordingly—replacing old data...
 
 **Solution:**
-An architecture was designed where the `ViewModel` triggered the repository’s `searchBook(query)` method. This, in turn, called a suspending function that:
-1. Deleted previous Room entries.
-2. Made a fresh API call.
-3. Inserted the new results into Room.
+An architecture was designed where the `ViewModel` triggered the repository’s `searchBook(query)` method. This, in turn, called a Suspending Function that:
+1. Deleted previous Room entries...
+2. Made a fresh API call...
+3. Inserted the new results into Room...
    The UI then updated through Flow collection using `collectAsStateWithLifecycle()`...
 
 ---
@@ -114,10 +115,10 @@ An architecture was designed where the `ViewModel` triggered the repository’s 
 ### d] Sequential Execution of Suspending Functions
 
 **Challenge:**
-Ensuring that suspending functions such as `searchBooks()` and `getBooks()` execute in a defined order, especially during a search operation...
+Ensuring that Suspending Functions such as `searchBooks()` and `getBooks()` execute in a defined order, especially during a Search operation...
 
 **Solution:**
-`withContext(dispatcher)` ensured the code block's suspend functions were executed sequentially. The `searchBook()` call was always followed by `getBooks()` within the same coroutine in the `ViewModel`...
+`withContext(dispatcher)` ensured the code block's Suspend Functions were executed sequentially. The `searchBook()` call was always followed by `getBooks()` within the same coroutine in the `ViewModel`...
 
 ---
 
@@ -127,7 +128,7 @@ Ensuring that suspending functions such as `searchBooks()` and `getBooks()` exec
 Initial attempts to call `searchBooks()` without subsequently updating the UI resulted in stale data being shown...
 
 **Solution:**
-The solution was to call `getBooks()` after `searchBooks()` in the `ViewModel`, ensuring the state flow was refreshed after new data was written to Room...
+The solution was to call `getBooks()` after `searchBooks()` in the `ViewModel`, ensuring the State Flow was refreshed after new data was written to Room...
 
 ---
 
@@ -145,7 +146,7 @@ b] [Material3](https://developer.android.com/jetpack/compose/designsystems/mater
 
 c] [Voyager Navigation](https://github.com/adrielcafe/voyager)
 
-- [Voyager] is a Navigation library for Kotlin Multiplatform that simplifies screen-based navigation while ensuring Lifecycle Safety and integration with Dependency Injection...
+- Voyager is a Navigation library for Kotlin Multiplatform that simplifies screen-based navigation while ensuring Lifecycle Safety and integration with Dependency Injection...
 
 d] [Koin](https://insert-koin.io/)
 

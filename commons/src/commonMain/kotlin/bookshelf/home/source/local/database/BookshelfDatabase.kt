@@ -22,6 +22,10 @@ import bookshelf.home.source.local.dao.BookshelfDao
 import bookshelf.home.source.local.entity.BooksEntity
 import bookshelf.home.source.local.typeConverter.BookshelfTypeConverters
 
+/**
+ * This is the Home feature's [RoomDatabase]...
+ */
+
 @Database(
     entities = [BooksEntity::class],
     version = 1,

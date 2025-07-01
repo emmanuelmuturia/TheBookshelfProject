@@ -21,6 +21,10 @@ import androidx.compose.ui.text.googlefonts.Font
 import androidx.compose.ui.text.googlefonts.GoogleFont
 import bookshelf.bookshelf.android.R
 
+/**
+ * This is the project's Typography Palette...
+ */
+
 val provider =
     GoogleFont.Provider(
         providerAuthority = "com.google.android.gms.fonts",

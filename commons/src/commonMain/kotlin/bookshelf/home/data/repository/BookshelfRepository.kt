@@ -18,6 +18,10 @@ package bookshelf.home.data.repository
 import bookshelf.home.data.model.Books
 import kotlinx.coroutines.flow.Flow
 
+/**
+ * This is the Home feature's Repository that abstracts the Data Sources' implementations...
+ */
+
 interface BookshelfRepository {
     suspend fun getBooks(): Flow<List<Books>>
 

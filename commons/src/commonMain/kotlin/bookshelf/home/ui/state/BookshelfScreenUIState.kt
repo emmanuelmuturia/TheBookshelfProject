@@ -17,6 +17,10 @@ package bookshelf.home.ui.state
 
 import bookshelf.home.data.model.Books
 
+/**
+ * This is the Home feature's Home Screen UI State...
+ */
+
 data class BookshelfScreenUIState(
     val books: List<Books> = emptyList(),
     val isLoading: Boolean = false,

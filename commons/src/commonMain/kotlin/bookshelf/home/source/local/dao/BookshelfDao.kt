@@ -23,6 +23,10 @@ import androidx.room.Transaction
 import bookshelf.home.source.local.entity.BooksEntity
 import kotlinx.coroutines.flow.Flow
 
+/**
+ * This is the Home feature's [Dao]...
+ */
+
 @Dao
 interface BookshelfDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)

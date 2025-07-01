@@ -19,6 +19,10 @@ import bookshelf.home.ui.dependencyInjection.bookshelfUIKoinModule
 import org.koin.core.context.startKoin
 import org.koin.dsl.KoinAppDeclaration
 
+/**
+ * This is the project's initialisation of Koin...
+ */
+
 fun initKoin(config: KoinAppDeclaration? = null) =
     startKoin {
         config?.invoke(this)

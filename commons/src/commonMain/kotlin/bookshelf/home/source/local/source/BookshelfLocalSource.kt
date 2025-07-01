@@ -18,6 +18,10 @@ package bookshelf.home.source.local.source
 import bookshelf.home.source.local.entity.BooksEntity
 import kotlinx.coroutines.flow.Flow
 
+/**
+ * This is the Home feature's Local Data Source...
+ */
+
 interface BookshelfLocalSource {
     suspend fun getBooks(): Flow<List<BooksEntity>>
 

@@ -20,6 +20,10 @@ import bookshelf.home.source.local.entity.IndustryIdentifierEntity
 import bookshelf.home.source.local.entity.ItemEntity
 import kotlinx.serialization.json.Json
 
+/**
+ * This is the Home feature's [TypeConverter] for the Local Data Source...
+ */
+
 class BookshelfTypeConverters {
     private val json =
         Json {

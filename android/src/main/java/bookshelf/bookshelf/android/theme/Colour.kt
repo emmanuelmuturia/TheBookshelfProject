@@ -16,6 +16,10 @@
 package bookshelf.bookshelf.android.theme
 import androidx.compose.ui.graphics.Color
 
+/**
+ * This is the project's Colour Palette...
+ */
+
 val primaryLight = Color(color = 0xFF30458E)
 val onPrimaryLight = Color(color = 0xFFFFFFFF)
 val primaryContainerLight = Color(color = 0xFF495DA8)
