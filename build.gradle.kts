@@ -5,6 +5,10 @@ plugins {
     alias(notation = libs.plugins.kotlinAndroid).apply(apply = false)
     alias(notation = libs.plugins.kotlinMultiplatform).apply(apply = false)
     alias(notation = libs.plugins.compose.compiler).apply(apply = false)
+    alias(notation = libs.plugins.ksp).apply(apply = false)
+    alias(notation = libs.plugins.room).apply(apply = false)
+    alias(notation = libs.plugins.kotlin.serialization.json).apply(apply = false)
+    alias(notation = libs.plugins.composeMultiplatform).apply(apply = false)
     alias(notation = libs.plugins.ktlint)
     alias(notation = libs.plugins.detekt)
     alias(notation = libs.plugins.spotless)
@@ -17,6 +21,12 @@ subprojects {
         android.set(true)
         filter {
             exclude("**/generated/**")
+        }
+    }
+    tasks.withType<org.jlleitschuh.gradle.ktlint.tasks.BaseKtLintCheckTask>().configureEach {
+        exclude { fileTreeElement ->
+            val path = fileTreeElement.file.absolutePath
+            path.contains(other = "/build/generated/") || path.contains(other = "/build/ksp/")
         }
     }
 
@@ -57,4 +67,5 @@ subprojects {
 apply(plugin = rootProject.libs.plugins.detekt.get().pluginId)
 detekt {
     parallel = true
+    config.setFrom(files("${project.rootDir}/detekt/detekt.yml"))
 }

@@ -18,6 +18,11 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 plugins {
     alias(notation = libs.plugins.kotlinMultiplatform)
     alias(notation = libs.plugins.androidLibrary)
+    alias(notation = libs.plugins.ksp)
+    alias(notation = libs.plugins.kotlin.serialization.json)
+    alias(notation = libs.plugins.room)
+    alias(notation = libs.plugins.compose.compiler)
+    alias(notation = libs.plugins.composeMultiplatform)
 }
 
 kotlin {
@@ -46,21 +51,41 @@ kotlin {
         androidMain.dependencies {
             implementation(dependencyNotation = libs.koin.android)
             implementation(dependencyNotation = libs.koin.androidx.compose)
+            implementation(dependencyNotation = libs.ktor.client.okhttp)
         }
         commonMain.dependencies {
             // Put your Multiplatform Dependencies here...
+            implementation(dependencyNotation = compose.runtime)
+            implementation(dependencyNotation = compose.foundation)
+            implementation(dependencyNotation = compose.material3)
+            implementation(dependencyNotation = compose.ui)
+            implementation(dependencyNotation = compose.materialIconsExtended)
             api(dependencyNotation = libs.koin.core)
             implementation(dependencyNotation = libs.koin.compose)
             implementation(dependencyNotation = libs.koin.compose.viewmodel)
+            implementation(dependencyNotation = libs.ktor.client.core)
+            implementation(dependencyNotation = libs.ktor.client.content.negotiation)
+            implementation(dependencyNotation = libs.ktor.serialization.kotlinx.json)
+            implementation(dependencyNotation = libs.kotlinx.coroutines.core)
+            implementation(dependencyNotation = libs.timber)
+            implementation(dependencyNotation = libs.lifecycle.viewmodel)
+            implementation(dependencyNotation = libs.kotlin.serialization.json)
+            implementation(dependencyNotation = libs.room.runtime)
+            implementation(dependencyNotation = libs.sqlite.bundled)
+            implementation(dependencyNotation = libs.landscapist.coil3)
+            implementation(dependencyNotation = libs.voyager.navigator)
         }
         commonTest.dependencies {
             implementation(dependencyNotation = libs.kotlin.test)
+        }
+        iosMain.dependencies {
+            implementation(dependencyNotation = libs.ktor.client.darwin)
         }
     }
 }
 
 android {
-    namespace = "thebookshelfproject.thebookshelfproject"
+    namespace = "bookshelf.bookshelf"
     compileSdk = 35
     defaultConfig {
         minSdk = 24
@@ -69,4 +94,18 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+    buildFeatures {
+        compose = true
+    }
+}
+
+room {
+    schemaDirectory(path = "$projectDir/schemas")
+}
+
+dependencies {
+    add(configurationName = "kspAndroid", dependencyNotation = libs.room.compiler)
+    add(configurationName = "kspIosX64", dependencyNotation = libs.room.compiler)
+    add(configurationName = "kspIosArm64", dependencyNotation = libs.room.compiler)
+    add(configurationName = "kspIosSimulatorArm64", dependencyNotation = libs.room.compiler)
 }
