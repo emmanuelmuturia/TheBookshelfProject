@@ -51,18 +51,18 @@ This is my first DevSecOps project, based on [Introduction To DevSecOps by TryHa
 <table>
   <tr>
     <th>The Splash Screen</th>
-    <th>The Home Screen [Current Weather]</th>
-    <th>The Home Screen [Forecast Weather]</th>
+    <th>The Bookshelf Screen</th>
+    <th>The Bookshelf Details Screen</th>
   </tr>
   <tr>
     <td>
-      <img src="assets/images/screenshots/screens/splash_screen.png" alt="The Splash Screen" style="max-width:490px; height:490px;">
+      <img src="assets/images/screenshots/splash_screen.png" alt="The Splash Screen" style="max-width:490px; height:490px;">
     </td>
     <td>
-      <img src="assets/images/screenshots/screens/home_screen_current_weather.png" alt="The Home Screen [Current Weather]" style="max-width:490px; height:490px;">
+      <img src="assets/images/screenshots/bookshelf_screen.png" alt="The Bookshelf Screen" style="max-width:490px; height:490px;">
     </td>
     <td>
-      <img src="assets/images/screenshots/screens/home_screen_forecast_weather.png" alt="The Home Screen [Forecast Weather]" style="max-width:490px; height:490px;">
+      <img src="assets/images/screenshots/bookshelf_details_screen.png" alt="The Bookshelf Details Screen" style="max-width:490px; height:490px;">
     </td>
   </tr>
 </table>
