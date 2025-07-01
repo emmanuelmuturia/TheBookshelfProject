@@ -22,6 +22,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.staggeredgrid.LazyVerticalStaggeredGrid
@@ -51,6 +52,7 @@ import bookshelf.home.ui.viewmodel.BookshelfScreenViewModel
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
+import coil3.ImageLoader
 import com.skydoves.landscapist.ImageOptions
 import com.skydoves.landscapist.coil3.CoilImage
 import org.koin.compose.viewmodel.koinViewModel
@@ -135,41 +137,43 @@ private fun BookshelfScreenContent(
         }
     }
 
-    AnimatedVisibility(visible = bookshelfScreenUIState.books.isNotEmpty()) {
+    AnimatedVisibility(visible = !bookshelfScreenUIState.isLoading) {
         LazyVerticalStaggeredGrid(
-            modifier = modifier.fillMaxSize(),
+            modifier = Modifier.fillMaxSize(),
             columns = StaggeredGridCells.Fixed(count = 2),
             verticalItemSpacing = 3.dp,
             horizontalArrangement = Arrangement.spacedBy(space = 3.dp),
         ) {
             items(items = allItems) { item ->
                 CoilImage(
-                    modifier = Modifier.fillMaxWidth().wrapContentHeight().clickable {
-                        item.id?.let {
-                            navigator.push(item = BookshelfDetailsScreen(
-                                bookId = it
-                            ))
-                        }
+                    modifier = Modifier.clickable {
+                        item.id?.let { navigator.push(BookshelfDetailsScreen(bookId = it)) }
                     },
                     imageModel = { item.volumeInfo?.imageLinks?.thumbnail },
                     imageOptions = ImageOptions(
                         contentScale = ContentScale.Crop,
-                        contentDescription = "Book Cover...",
+                        alignment = Alignment.Center
                     )
                 )
             }
         }
     }
 
-    AnimatedVisibility(visible = bookshelfScreenUIState.books.isEmpty()) {
-        LazyColumn(
-            modifier = modifier.fillMaxSize(),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center,
-        ) {
-            item {
-                Text(text = "No Books Found...")
-            }
-        }
-    }
+    /* AnimatedVisibility(visible = bookshelfScreenUIState.books.isEmpty()) {
+         LazyColumn(
+             modifier = modifier.fillMaxSize(),
+             horizontalAlignment = Alignment.CenterHorizontally,
+             verticalArrangement = Arrangement.Center,
+         ) {
+             item {
+                 Text(text = "No Books Found...")
+             }
+         }
+     }*/
 }
+
+@Composable
+expect fun BookThumbnail(
+    modifier: Modifier,
+    imageUrl: String,
+)

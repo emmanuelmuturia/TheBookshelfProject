@@ -24,7 +24,7 @@ data class ImageLinks(
 
 fun ImageLinksEntity.toImageLinks(): ImageLinks {
     return ImageLinks(
-        smallThumbnail = smallThumbnail?.replace(oldValue = "http", newValue = "https"),
-        thumbnail = thumbnail?.replace(oldValue = "http", newValue = "https"),
+        smallThumbnail = smallThumbnail?.replace(oldValue = "http://", newValue = "https://"),
+        thumbnail = thumbnail?.replace(oldValue = "http://", newValue = "https://"),
     )
 }
