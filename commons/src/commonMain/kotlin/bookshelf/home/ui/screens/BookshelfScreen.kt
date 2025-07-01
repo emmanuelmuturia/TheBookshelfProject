@@ -137,7 +137,7 @@ private fun BookshelfScreenContent(
         }
     }
 
-    AnimatedVisibility(visible = !bookshelfScreenUIState.isLoading) {
+    AnimatedVisibility(visible = bookshelfScreenUIState.books.isNotEmpty()) {
         LazyVerticalStaggeredGrid(
             modifier = Modifier.fillMaxSize(),
             columns = StaggeredGridCells.Fixed(count = 2),
@@ -159,7 +159,7 @@ private fun BookshelfScreenContent(
         }
     }
 
-    /* AnimatedVisibility(visible = bookshelfScreenUIState.books.isEmpty()) {
+     AnimatedVisibility(visible = bookshelfScreenUIState.books.isEmpty()) {
          LazyColumn(
              modifier = modifier.fillMaxSize(),
              horizontalAlignment = Alignment.CenterHorizontally,
@@ -169,11 +169,5 @@ private fun BookshelfScreenContent(
                  Text(text = "No Books Found...")
              }
          }
-     }*/
+     }
 }
-
-@Composable
-expect fun BookThumbnail(
-    modifier: Modifier,
-    imageUrl: String,
-)

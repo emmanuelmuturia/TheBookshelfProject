@@ -52,8 +52,6 @@ kotlin {
             implementation(dependencyNotation = libs.koin.android)
             implementation(dependencyNotation = libs.koin.androidx.compose)
             implementation(dependencyNotation = libs.ktor.client.okhttp)
-            implementation(dependencyNotation = libs.landscapist.glide)
-            implementation(dependencyNotation = libs.glide)
         }
         commonMain.dependencies {
             // Put your Multiplatform Dependencies here...
