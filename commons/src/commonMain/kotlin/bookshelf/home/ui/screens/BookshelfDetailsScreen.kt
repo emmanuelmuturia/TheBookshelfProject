@@ -44,6 +44,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -55,6 +56,10 @@ import cafe.adriel.voyager.navigator.currentOrThrow
 import com.skydoves.landscapist.ImageOptions
 import com.skydoves.landscapist.coil3.CoilImage
 import org.koin.compose.viewmodel.koinViewModel
+
+/**
+ * This is the Home feature's Details Screen...
+ */
 
 data class BookshelfDetailsScreen(
     val bookId: String,
@@ -87,11 +92,13 @@ data class BookshelfDetailsScreen(
                                     Modifier.semantics {
                                         contentDescription =
                                             "Bookshelf Details Screen Top App Bar Text"
-                                    },
+                                    }.padding(end = 10.dp),
                                 text = it,
                                 fontWeight = FontWeight.ExtraBold,
                                 fontSize = 21.sp,
                                 color = MaterialTheme.colorScheme.onBackground,
+                                maxLines = 1,
+                                overflow = TextOverflow.Ellipsis,
                             )
                         }
                     },
@@ -222,13 +229,6 @@ private fun BookshelfDetailsScreenContent(
             }
 
             item {
-                BookDetailRow(
-                    label = "Preview Link",
-                    value = bookshelfDetailsScreenUIState.book?.volumeInfo?.previewLink ?: "N/A...",
-                )
-            }
-
-            item {
                 bookshelfDetailsScreenUIState.book?.volumeInfo?.maturityRating?.let {
                     BookDetailRow(
                         label = "Maturity",
@@ -248,11 +248,12 @@ fun BookDetailRow(
     Row(
         modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.Start,
+        verticalAlignment = Alignment.CenterVertically,
     ) {
         Text(
             text = "$label: ",
             fontWeight = FontWeight.Bold,
-            style = MaterialTheme.typography.bodyMedium,
+            style = MaterialTheme.typography.bodyLarge,
         )
         Text(
             text = value,

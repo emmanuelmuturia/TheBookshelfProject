@@ -19,11 +19,19 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
 
+/**
+ * This is the project's State...
+ */
+
 sealed class BookshelfResult<out T> {
     data class Success<out T>(val data: T) : BookshelfResult<T>()
 
     data class Error(val error: String) : BookshelfResult<Nothing>()
 }
+
+/**
+ * This is the project's State Management's extension function that returns the State as a [Flow]...
+ */
 
 fun <T> Flow<T>.asResult(): Flow<BookshelfResult<T>> {
     return this.map<T, BookshelfResult<T>> {

@@ -20,6 +20,10 @@ import bookshelf.commons.dependencyInjection.initKoin
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 
+/**
+ * This is the Android-specific implementation of the project's entry point...
+ */
+
 class BookshelfApplication : Application() {
     override fun onCreate() {
         super.onCreate()

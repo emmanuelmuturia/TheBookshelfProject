@@ -21,6 +21,10 @@ import bookshelf.home.ui.viewmodel.BookshelfScreenViewModel
 import org.koin.core.module.dsl.viewModelOf
 import org.koin.dsl.module
 
+/**
+ * This is the project's UI Layer Koin Module...
+ */
+
 val bookshelfUIKoinModule =
     module {
 

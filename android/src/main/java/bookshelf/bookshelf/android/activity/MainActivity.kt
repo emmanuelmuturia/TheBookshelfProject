@@ -30,6 +30,10 @@ import cafe.adriel.voyager.navigator.Navigator
 import org.koin.java.KoinJavaComponent.inject
 import kotlin.getValue
 
+/**
+ * This the main [android.app.Activity] of the project...
+ */
+
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

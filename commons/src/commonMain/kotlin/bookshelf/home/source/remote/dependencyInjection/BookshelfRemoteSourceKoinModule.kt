@@ -25,6 +25,10 @@ import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.bind
 import org.koin.dsl.module
 
+/**
+ * This is the project's Data Source [:remote] Koin Module...
+ */
+
 val bookshelfRemoteSourceKoinModule =
     module {
         single {

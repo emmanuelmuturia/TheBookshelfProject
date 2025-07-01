@@ -21,6 +21,10 @@ import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.bind
 import org.koin.dsl.module
 
+/**
+ * This is the project's Data Source [:local] Koin Module...
+ */
+
 val bookshelfLocalSourceKoinModule =
     module {
         singleOf(::BookshelfLocalSourceImplementation).bind(clazz = BookshelfLocalSource::class)

@@ -65,6 +65,10 @@ import com.skydoves.landscapist.ImageOptions
 import com.skydoves.landscapist.coil3.CoilImage
 import org.koin.compose.viewmodel.koinViewModel
 
+/**
+ * This is the Home feature's Home Screen...
+ */
+
 class BookshelfScreen() : Screen {
     @OptIn(ExperimentalMaterial3Api::class)
     @Composable
@@ -207,7 +211,7 @@ private fun BookSearchBar(
     OutlinedTextField(
         modifier =
             Modifier.semantics {
-                contentDescription = "City Search Bar"
+                contentDescription = "Bookshelf Screen Search Bar"
             },
         value = bookQuery,
         onValueChange = onBookQueryChange,
@@ -226,9 +230,9 @@ private fun BookSearchBar(
             Text(
                 modifier =
                     Modifier.semantics {
-                        contentDescription = "Home Screen Search Bar Label"
+                        contentDescription = "Bookshelf Screen Search Bar Label"
                     },
-                text = "Enter City Name...",
+                text = "Enter Book Query...",
                 color = MaterialTheme.colorScheme.primary,
                 fontSize = 14.sp,
             )
