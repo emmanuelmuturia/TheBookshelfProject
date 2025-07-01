@@ -21,5 +21,5 @@ import kotlinx.coroutines.flow.Flow
 interface BookshelfRepository {
     suspend fun getBooks(): Flow<List<Books>>
 
-    suspend fun searchBook(bookQuery: String): Flow<List<Books>>
+    suspend fun searchBook(bookQuery: String)
 }

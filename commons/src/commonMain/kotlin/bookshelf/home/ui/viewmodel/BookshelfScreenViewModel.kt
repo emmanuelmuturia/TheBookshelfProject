@@ -63,28 +63,18 @@ class BookshelfScreenViewModel(
     }
 
     fun searchBooks(bookQuery: String) {
-        bookshelfScreenUIState.update { it.copy(isLoading = true) }
         viewModelScope.launch {
-            bookshelfRepository.searchBook(bookQuery = bookQuery).asResult().collect { result ->
+            bookshelfScreenUIState.update { it.copy(isLoading = true) }
 
-                when (result) {
-                    is BookshelfResult.Success -> {
-                        bookshelfScreenUIState.update {
-                            it.copy(
-                                books = result.data,
-                                isLoading = false,
-                            )
-                        }
-                    }
+            val result = runCatching {
+                bookshelfRepository.searchBook(bookQuery = bookQuery)
+            }
 
-                    is BookshelfResult.Error -> {
-                        bookshelfScreenUIState.update {
-                            it.copy(
-                                error = result.error,
-                                isLoading = false,
-                            )
-                        }
-                    }
+            result.onSuccess {
+                getBooks()
+            }.onFailure { throwable ->
+                bookshelfScreenUIState.update {
+                    it.copy(error = throwable.message ?: "Unknown Error...", isLoading = false)
                 }
             }
         }
