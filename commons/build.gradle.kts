@@ -59,6 +59,7 @@ kotlin {
             implementation(dependencyNotation = compose.foundation)
             implementation(dependencyNotation = compose.material3)
             implementation(dependencyNotation = compose.ui)
+            implementation(dependencyNotation = compose.materialIconsExtended)
             api(dependencyNotation = libs.koin.core)
             implementation(dependencyNotation = libs.koin.compose)
             implementation(dependencyNotation = libs.koin.compose.viewmodel)

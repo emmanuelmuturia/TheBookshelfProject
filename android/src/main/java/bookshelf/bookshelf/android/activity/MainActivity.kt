@@ -24,6 +24,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import bookshelf.bookshelf.android.theme.BookshelfTheme
 import bookshelf.home.ui.screens.BookshelfScreen
+import cafe.adriel.voyager.navigator.Navigator
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,7 +35,9 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background,
                 ) {
-                    BookshelfScreen()
+                    Navigator(
+                        screen = BookshelfScreen()
+                    )
                 }
             }
         }

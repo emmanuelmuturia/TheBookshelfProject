@@ -75,6 +75,7 @@ dependencies {
     implementation(dependencyNotation = libs.google.fonts)
     implementation(dependencyNotation = libs.android.splash.screen)
     implementation(dependencyNotation = libs.kotlinx.coroutines.android)
+    implementation(dependencyNotation = libs.voyager.navigator)
     implementation(dependencyNotation = libs.compose.ui)
     implementation(dependencyNotation = libs.compose.ui.tooling.preview)
     implementation(dependencyNotation = libs.compose.material3)
