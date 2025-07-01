@@ -20,11 +20,13 @@
 
     <application
         android:name="bookshelf.dependencyInjection.BookshelfApplication"
+        android:icon="@mipmap/ic_launcher"
         android:allowBackup="false"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/Theme.App.SplashTheme">
         <activity
             android:name=".activity.MainActivity"
+            android:theme="@style/Theme.App.SplashTheme"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

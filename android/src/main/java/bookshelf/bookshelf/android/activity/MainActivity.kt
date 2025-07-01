@@ -22,13 +22,22 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import bookshelf.bookshelf.android.theme.BookshelfTheme
 import bookshelf.home.ui.screens.BookshelfScreen
+import bookshelf.home.ui.viewmodel.BookshelfDetailsScreenViewModel
+import bookshelf.home.ui.viewmodel.BookshelfScreenViewModel
 import cafe.adriel.voyager.navigator.Navigator
+import org.koin.java.KoinJavaComponent.inject
+import kotlin.getValue
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val bookshelfScreenViewModel: BookshelfScreenViewModel by inject(clazz = BookshelfScreenViewModel::class.java)
+        installSplashScreen().setKeepOnScreenCondition {
+            bookshelfScreenViewModel.bookshelfScreenUIState.value.isLoading
+        }
         setContent {
             BookshelfTheme {
                 Surface(
