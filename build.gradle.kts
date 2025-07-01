@@ -8,6 +8,7 @@ plugins {
     alias(notation = libs.plugins.ksp).apply(apply = false)
     alias(notation = libs.plugins.room).apply(apply = false)
     alias(notation = libs.plugins.kotlin.serialization.json).apply(apply = false)
+    alias(notation = libs.plugins.composeMultiplatform).apply(apply = false)
     alias(notation = libs.plugins.ktlint)
     alias(notation = libs.plugins.detekt)
     alias(notation = libs.plugins.spotless)

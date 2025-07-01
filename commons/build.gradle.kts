@@ -22,6 +22,7 @@ plugins {
     alias(notation = libs.plugins.kotlin.serialization.json)
     alias(notation = libs.plugins.room)
     alias(notation = libs.plugins.compose.compiler)
+    alias(notation = libs.plugins.composeMultiplatform)
 }
 
 kotlin {
@@ -51,14 +52,13 @@ kotlin {
             implementation(dependencyNotation = libs.koin.android)
             implementation(dependencyNotation = libs.koin.androidx.compose)
             implementation(dependencyNotation = libs.ktor.client.okhttp)
-            implementation(dependencyNotation = libs.compose.ui)
-            implementation(dependencyNotation = libs.compose.ui.tooling.preview)
-            implementation(dependencyNotation = libs.compose.material3)
-            implementation(dependencyNotation = libs.landscapist.glide)
-            implementation(dependencyNotation = libs.glide)
         }
         commonMain.dependencies {
             // Put your Multiplatform Dependencies here...
+            implementation(dependencyNotation = compose.runtime)
+            implementation(dependencyNotation = compose.foundation)
+            implementation(dependencyNotation = compose.material3)
+            implementation(dependencyNotation = compose.ui)
             api(dependencyNotation = libs.koin.core)
             implementation(dependencyNotation = libs.koin.compose)
             implementation(dependencyNotation = libs.koin.compose.viewmodel)
@@ -71,6 +71,8 @@ kotlin {
             implementation(dependencyNotation = libs.kotlin.serialization.json)
             implementation(dependencyNotation = libs.room.runtime)
             implementation(dependencyNotation = libs.sqlite.bundled)
+            implementation(dependencyNotation = libs.landscapist.coil3)
+            implementation(dependencyNotation = libs.voyager.navigator)
         }
         commonTest.dependencies {
             implementation(dependencyNotation = libs.kotlin.test)
